@@ -1,0 +1,25 @@
+{
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "seed": 45,
+  "method": "expression",
+  "profile": "ood-fraction",
+  "count": 30,
+  "target_range": [
+    1,
+    200
+  ],
+  "difficulty_rule": "reference fraction => hard; depth>2 => medium; otherwise easy",
+  "reference_based_ood": true,
+  "excluded_hashes": {
+    "data/train.jsonl": "ef8e7c1da232fc63425fc57174ad2e2386e25dc77c693822f93d7be3e76bf194",
+    "data/validation.jsonl": "4c52b64a3de9143a374125bdadaf03800d59d8304a1e1e8428a3e6810bae4f99",
+    "data/test-id.jsonl": "81bb8fd441245c3d5aaf9454bd4c76e9aab88f8e6c7ed9b4e4eec686e380c166"
+  },
+  "files": {
+    "ood-fraction.jsonl": {
+      "sha256": "d6e7a7042c20d95ca4c57f92c98f60d3dc78fcbdbd46e0a25f0daa67e91781bd",
+      "count": 30
+    }
+  }
+}

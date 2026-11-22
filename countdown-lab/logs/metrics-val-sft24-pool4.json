@@ -1,0 +1,27 @@
+{
+  "problem_count": 12,
+  "samples_per_problem": 4,
+  "k": 4,
+  "valid_output_rate": 0.4583333333333333,
+  "parse_failure_rate": 0.020833333333333332,
+  "error_counts": {
+    "WRONG_TARGET": 22,
+    "NUMBERS": 25,
+    "TOKEN": 1
+  },
+  "mean_tokens_per_record": 16.9375,
+  "mean_seconds_per_record": 1.1190289583270594,
+  "mean_tokens_per_problem": 67.75,
+  "mean_seconds_per_problem": 4.476115833308238,
+  "bootstrap_unit": "problem ID; uncertainty across problems, not training seeds",
+  "pass_at_1": 0.0,
+  "pass_at_k": 0.0,
+  "pass_at_1_ci95": [
+    0.0,
+    0.0
+  ],
+  "pass_at_k_ci95": [
+    0.0,
+    0.0
+  ]
+}

@@ -1,0 +1,10 @@
+# Python 3.11; chọn wheel torch phù hợp CUDA/driver, rồi pip check.
+# Stack đề xuất theo API v0.15.2, chưa được chạy GPU tại nơi tạo tài liệu.
+torch==2.6.0
+transformers==4.49.0
+trl==0.15.2
+peft==0.14.0
+datasets==3.3.2
+accelerate==1.4.0
+PyYAML==6.0.2
+pytest==8.3.5

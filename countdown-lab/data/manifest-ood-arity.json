@@ -1,0 +1,21 @@
+{
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "seed": 44,
+  "method": "expression",
+  "profile": "ood-arity",
+  "count": 30,
+  "target_range": [
+    1,
+    200
+  ],
+  "difficulty_rule": "reference fraction => hard; depth>2 => medium; otherwise easy",
+  "reference_based_ood": true,
+  "excluded_hashes": {},
+  "files": {
+    "ood-arity.jsonl": {
+      "sha256": "6978351bcd04b08c6320c458df83b29c37dad1ac80741fab2e558ab3826cb189",
+      "count": 30
+    }
+  }
+}

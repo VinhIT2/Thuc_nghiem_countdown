@@ -1,0 +1,29 @@
+# Thi nghiem SFT tren data-v2 (320 de train / 40 validation).
+# Khac sft_lora.yaml o: duong dan data, so buoc (1 epoch = 320/(1*4) = 80), tan suat luu/eval.
+experiment_id: sft-v2-001
+model: Qwen/Qwen2.5-0.5B-Instruct
+revision: 7ae557604adf67be50417f59c2c2f167def9a775
+train: data-v2/train.jsonl
+validation: data-v2/validation.jsonl
+output_dir: logs/sft-v2-001
+prompt_style: direct
+seed: 42
+precision: bf16
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+learning_rate: 0.0002
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_steps: 80
+num_train_epochs: 1
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 4
+max_seq_length: 256
+eval_steps: 20
+save_steps: 20
+logging_steps: 4
+gradient_checkpointing: true

@@ -1,0 +1,2 @@
+{"id": "test-id-000000", "numbers": [3, 9, 10, 1], "target": 117, "reference_expression": "((3 + 10) * (9 * 1))", "difficulty": "easy", "reference_depth": 2, "reference_has_fraction": false, "generator_version": "generator-v1-reference-profiles", "split": "test-id"}
+{"id": "test-id-000001", "numbers": [9, 7, 3, 6], "target": 39, "reference_expression": "((9 / 3) * (7 + 6))", "difficulty": "easy", "reference_depth": 2, "reference_has_fraction": false, "generator_version": "generator-v1-reference-profiles", "split": "test-id"}

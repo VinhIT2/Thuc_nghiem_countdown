@@ -1,0 +1,32 @@
+# GRPO tren data-v2, khoi tu adapter SFT da chon. G=4 + batch 4 da chung minh vua 4GB.
+# Khac config goc: duong dan data/adapter, so buoc 80, tan suat eval giam vi validation 40 de.
+# Bien so duoc phep dao: reward_mode (binary o file nay, shaped o file ben canh).
+experiment_id: grpo-v2-binary-001
+model: Qwen/Qwen2.5-0.5B-Instruct
+revision: 7ae557604adf67be50417f59c2c2f167def9a775
+sft_adapter: logs/sft-v2-001/checkpoint-80
+train: data-v2/train.jsonl
+validation: data-v2/validation.jsonl
+output_dir: logs/grpo-v2-binary-001
+prompt_style: direct
+seed: 42
+precision: bf16
+reward_mode: binary
+num_generations: 4
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 1
+max_prompt_length: 256
+max_completion_length: 96
+temperature: 0.8
+beta: 0.04
+learning_rate: 0.000001
+lr_scheduler_type: constant
+warmup_ratio: 0.0
+max_steps: 80
+num_train_epochs: 1
+eval_steps: 40
+save_steps: 40
+logging_steps: 4
+gradient_checkpointing: true
+use_vllm: false

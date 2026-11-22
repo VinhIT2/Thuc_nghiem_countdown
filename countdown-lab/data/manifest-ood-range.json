@@ -1,0 +1,21 @@
+{
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "seed": 43,
+  "method": "expression",
+  "profile": "ood-range",
+  "count": 30,
+  "target_range": [
+    1,
+    200
+  ],
+  "difficulty_rule": "reference fraction => hard; depth>2 => medium; otherwise easy",
+  "reference_based_ood": true,
+  "excluded_hashes": {},
+  "files": {
+    "ood-range.jsonl": {
+      "sha256": "57606dff3303deba0619e4bc799d0a33b32560c558b9c7f213a263e8c09c4793",
+      "count": 30
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# Experiment moi: chi khac sft_lora.yaml o so buoc (1 epoch) + tan suat luu checkpoint
+# de chon checkpoint tren validation. Cac hyperparameter khac giu nguyen de tach bien so.
+experiment_id: sft-epoch1-001
+model: Qwen/Qwen2.5-0.5B-Instruct
+revision: 7ae557604adf67be50417f59c2c2f167def9a775
+train: data/train.jsonl
+validation: data/validation.jsonl
+output_dir: logs/sft-epoch1-001
+prompt_style: direct
+seed: 42
+precision: bf16
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+learning_rate: 0.0002
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_steps: 24  # 96 train / (batch 1 * accum 4) = 1 epoch
+num_train_epochs: 1
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 4
+max_seq_length: 256
+eval_steps: 6
+save_steps: 6
+logging_steps: 2
+gradient_checkpointing: true

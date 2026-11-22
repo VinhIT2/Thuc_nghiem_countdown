@@ -1,0 +1,32 @@
+# TODO: chọn trên validation + smoke test; không sao chép máy móc.
+experiment_id: grpo-smoke-binary-001
+model: Qwen/Qwen2.5-0.5B-Instruct
+revision: 7ae557604adf67be50417f59c2c2f167def9a775
+sft_adapter: logs/sft-smoke-001/final-adapter  # thay bằng checkpoint chọn trên validation
+train: data/train.jsonl
+validation: data/validation.jsonl
+output_dir: logs/grpo-smoke-binary-001
+prompt_style: direct
+seed: 42
+precision: bf16
+reward_mode: binary
+num_generations: 4
+# TRL 0.15.2 yêu cầu batch * world_size chia hết cho G.
+# Gradient accumulation KHÔNG chữa batch=1/G=4 trong phiên bản này.
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 1
+max_prompt_length: 256
+max_completion_length: 96
+temperature: 0.8
+beta: 0.04  # KL reference = base model khi disable SFT adapter, không phải frozen SFT
+learning_rate: 0.000001
+lr_scheduler_type: constant
+warmup_ratio: 0.0
+max_steps: 10
+num_train_epochs: 1
+eval_steps: 5
+save_steps: 5
+logging_steps: 1
+gradient_checkpointing: true
+use_vllm: false

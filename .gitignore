@@ -1,0 +1,14 @@
+# Model weights va moi truong: tai lai bang lenh, khong commit
+.hf-cache/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Weight/checkpoint: train lai duoc, va GitHub chan file >100MB
+*.safetensors
+countdown-lab/logs/*/checkpoint-*/
+countdown-lab/logs/*/final-adapter/
+
+# Repo tai lieu cua thay: tai truc tiep tu upstream, khong commit sang ten minh
+rl-reasoning-student-guide/

@@ -1,0 +1,53 @@
+{
+  "config": {
+    "experiment_id": "sft-v2-001",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "train": "data-v2/train.jsonl",
+    "validation": "data-v2/validation.jsonl",
+    "output_dir": "logs/sft-v2-001",
+    "prompt_style": "direct",
+    "seed": 42,
+    "precision": "bf16",
+    "lora": {
+      "r": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ]
+    },
+    "learning_rate": 0.0002,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.1,
+    "max_steps": 80,
+    "num_train_epochs": 1,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "max_seq_length": 256,
+    "eval_steps": 20,
+    "save_steps": 20,
+    "logging_steps": 4,
+    "gradient_checkpointing": true
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "trl": "0.15.2",
+    "peft": "0.14.0",
+    "datasets": "3.3.2",
+    "accelerate": "1.4.0"
+  },
+  "python": "3.13.12",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "data_hashes": {
+    "train": "5051d7ab15f2461e287645ef505be190f962063379ef77421ab19299ca82ce69",
+    "validation": "0366a98522a5b1b705f8cfddb6cc0cb609102b0dcc3dd4a2bf25ba35b1e55b6a"
+  },
+  "checkpoint_rule": "evaluate saved checkpoints on validation externally; final-adapter is NOT automatically best",
+  "world_size": 1
+}

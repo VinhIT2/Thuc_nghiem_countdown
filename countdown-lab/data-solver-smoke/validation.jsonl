@@ -1,0 +1,2 @@
+{"id": "validation-000000", "numbers": [10, 10, 4, 6], "target": 25, "reference_expression": "((10 / 10) + (4 * 6))", "difficulty": "easy", "reference_depth": 2, "reference_has_fraction": false, "generator_version": "generator-v1-reference-profiles", "split": "validation"}
+{"id": "validation-000001", "numbers": [6, 10, 1, 2], "target": 1, "reference_expression": "((10 - 6) - (1 + 2))", "difficulty": "easy", "reference_depth": 2, "reference_has_fraction": false, "generator_version": "generator-v1-reference-profiles", "split": "validation"}

@@ -1,0 +1,29 @@
+{
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "seed": 42,
+  "method": "expression",
+  "profile": "id",
+  "count": 120,
+  "target_range": [
+    1,
+    200
+  ],
+  "difficulty_rule": "reference fraction => hard; depth>2 => medium; otherwise easy",
+  "reference_based_ood": true,
+  "excluded_hashes": {},
+  "files": {
+    "train.jsonl": {
+      "sha256": "ef8e7c1da232fc63425fc57174ad2e2386e25dc77c693822f93d7be3e76bf194",
+      "count": 96
+    },
+    "validation.jsonl": {
+      "sha256": "4c52b64a3de9143a374125bdadaf03800d59d8304a1e1e8428a3e6810bae4f99",
+      "count": 12
+    },
+    "test-id.jsonl": {
+      "sha256": "81bb8fd441245c3d5aaf9454bd4c76e9aab88f8e6c7ed9b4e4eec686e380c166",
+      "count": 12
+    }
+  }
+}

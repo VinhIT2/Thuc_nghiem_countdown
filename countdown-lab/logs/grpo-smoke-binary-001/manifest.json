@@ -1,0 +1,51 @@
+{
+  "config": {
+    "experiment_id": "grpo-smoke-binary-001",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "sft_adapter": "logs/sft-smoke-001/final-adapter",
+    "train": "data/train.jsonl",
+    "validation": "data/validation.jsonl",
+    "output_dir": "logs/grpo-smoke-binary-001",
+    "prompt_style": "direct",
+    "seed": 42,
+    "precision": "bf16",
+    "reward_mode": "binary",
+    "num_generations": 4,
+    "per_device_train_batch_size": 4,
+    "per_device_eval_batch_size": 4,
+    "gradient_accumulation_steps": 1,
+    "max_prompt_length": 256,
+    "max_completion_length": 96,
+    "temperature": 0.8,
+    "beta": 0.04,
+    "learning_rate": 1e-06,
+    "lr_scheduler_type": "constant",
+    "warmup_ratio": 0.0,
+    "max_steps": 10,
+    "num_train_epochs": 1,
+    "eval_steps": 5,
+    "save_steps": 5,
+    "logging_steps": 1,
+    "gradient_checkpointing": true,
+    "use_vllm": false
+  },
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "trl": "0.15.2",
+    "peft": "0.14.0",
+    "datasets": "3.3.2",
+    "accelerate": "1.4.0"
+  },
+  "python": "3.13.12",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "generator_version": "generator-v1-reference-profiles",
+  "verifier_version": "verifier-v1",
+  "data_hashes": {
+    "train": "ef8e7c1da232fc63425fc57174ad2e2386e25dc77c693822f93d7be3e76bf194",
+    "validation": "4c52b64a3de9143a374125bdadaf03800d59d8304a1e1e8428a3e6810bae4f99"
+  },
+  "checkpoint_rule": "evaluate saved checkpoints on validation externally; final-adapter is NOT automatically best",
+  "world_size": 1
+}

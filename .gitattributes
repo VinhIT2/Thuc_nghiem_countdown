@@ -1,0 +1,10 @@
+# Git KHONG duoc doi noi dung byte khi checkout: manifest luu sha256 cua data/*.jsonl,
+# mot dau xuong dong bi doi thi hash lech va toan bo chuoi dong bang bo vo nghia.
+*.jsonl -text
+*.json  -text
+*.yaml  -text
+*.yml   -text
+*.md    text eol=lf
+*.py    text eol=lf
+*.txt   -text
+*.bin   -text
