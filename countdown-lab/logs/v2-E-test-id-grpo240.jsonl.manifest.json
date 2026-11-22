@@ -1,0 +1,21 @@
+{
+  "dataset": "data-v2/test-id.jsonl",
+  "out": "logs/v2-E-test-id-grpo240.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": "logs/vinh-grpo-v2-binary-240-001/checkpoint-240",
+  "style": "direct",
+  "n": 1,
+  "max_new_tokens": 128,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "seed": 42,
+  "config_id": "E-test-id-grpo240",
+  "sample": false,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "verifier_version": "verifier-v1",
+  "dataset_sha256": "cd2a5250aa9acb601010294611f0c8d87a86fd8839573475f3caf50a22d05f41",
+  "timing": "generate wall-time with GPU synchronization; excludes loading/tokenization",
+  "output_token_count": "includes generated EOS; input tokens logged separately"
+}

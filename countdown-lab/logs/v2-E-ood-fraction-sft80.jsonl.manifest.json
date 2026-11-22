@@ -1,0 +1,21 @@
+{
+  "dataset": "data-v2/ood-fraction.jsonl",
+  "out": "logs/v2-E-ood-fraction-sft80.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": "logs/sft-v2-001/checkpoint-80",
+  "style": "direct",
+  "n": 1,
+  "max_new_tokens": 128,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "seed": 42,
+  "config_id": "E-ood-fraction-sft80",
+  "sample": false,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "verifier_version": "verifier-v1",
+  "dataset_sha256": "1101c522313237ca4d1a904b68cd7628b686f7d191fd6e8ea4e3db201ca72c94",
+  "timing": "generate wall-time with GPU synchronization; excludes loading/tokenization",
+  "output_token_count": "includes generated EOS; input tokens logged separately"
+}

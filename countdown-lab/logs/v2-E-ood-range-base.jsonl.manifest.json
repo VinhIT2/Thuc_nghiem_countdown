@@ -1,0 +1,21 @@
+{
+  "dataset": "data-v2/ood-range.jsonl",
+  "out": "logs/v2-E-ood-range-base.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": null,
+  "style": "direct",
+  "n": 1,
+  "max_new_tokens": 128,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "seed": 42,
+  "config_id": "E-ood-range-base",
+  "sample": false,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "verifier_version": "verifier-v1",
+  "dataset_sha256": "39325f3a173cd06315db72e4b14a550e8c6267f2d78c9e185934438185733e4e",
+  "timing": "generate wall-time with GPU synchronization; excludes loading/tokenization",
+  "output_token_count": "includes generated EOS; input tokens logged separately"
+}

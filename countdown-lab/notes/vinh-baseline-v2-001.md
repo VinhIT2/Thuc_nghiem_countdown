@@ -61,7 +61,11 @@
    `seconds = 34359.66` trong khi median toàn pool 1.25 s. Nguyên nhân: máy tính **ngủ qua
    đêm** giữa chừng run, và `time.perf_counter()` trên Windows vẫn đếm khi suspend.
    Chỉ tiêu chí chi phí bị nhiễm; `valid/pass@k/error_counts` vẫn dùng được vì verifier
-   chấm lại từng bản ghi (`eval.py:36`). Bản replicate seed 1234 đo lại đúng: **3.56 s/đề**.
+   chấm lại từng bản ghi (`eval.py:36`). Bản replicate seed 1234 đo lại đúng: **3.56 s/đề**;
+   con số được phép trích cho log nhiễm là **median 5.03 s/đề** (trimmed mean 7.05).
+   Toàn bộ 59 log đã quét: **5 log nhiễm**, mỗi log chỉ 1–3 bản ghi. Quy tắc đọc chỉ số chi
+   phí ghi ở `README.md` mục "Cách đọc chỉ số chi phí" — nghiêm cấm sửa log vì `eval.py`
+   không kiểm tra trường `seconds`, sửa xong không ai phát hiện được.
 2. Trần B3 trên 40 đề = **0.000**, tức con số **0.083 của pilot `data/` (12 đề) là một câu
    ăn may**, không tái lập ở cả hai seed. Đây là lý do không được kết luận cross-method
    trên validation 12 đề.

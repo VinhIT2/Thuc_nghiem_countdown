@@ -100,6 +100,33 @@ Adapter **không có trong Git** (xem `.gitignore`), nên muốn evaluate phải
 Mỗi run tự tạo `logs/<experiment_id>/manifest.json` chứa hash dữ liệu, version package,
 tên GPU; `runtime.json` chứa thời gian và đỉnh VRAM.
 
+## Cách đọc chỉ số chi phí (đọc trước khi trích số `mean_seconds`)
+
+`src.eval` báo `mean_seconds_per_record` / `mean_seconds_per_problem` bằng **trung bình
+cộng**, nên một bản ghi lâu bất thường sẽ kéo cả cột đi. Trên máy laptop có sleep, điều này
+đã xảy ra **5 lần / 59 log**: `time.perf_counter()` vẫn đếm trong lúc máy suspend.
+
+| Log | mean (báo cáo bởi `src.eval`) | median | trimmed mean |
+|---|---:|---:|---:|
+| `v2-b1.jsonl` | 3.17 s/mẫu | 1.23 | 1.31 |
+| `v2-pool4.jsonl` | **217.22** s/mẫu | 1.25 | 1.50 |
+| `v2-pool4.B3.selected` | **868.88** s/đề | 5.03 | 7.05 |
+| `v2-E-ood-range-grpo240` | 23.14 s/mẫu | 1.88 | 1.47 |
+
+Quy tắc dùng trong project này:
+
+- **Chỉ số chi phí được trích là `median` hoặc trimmed mean** (loại bản ghi > 20 × median),
+  không phải mean. Bảng B0-B3 trong README và trong `notes/` đã đổi sang median.
+- **Không sửa log.** `eval.py:36` chỉ chấm lại `verifier` chứ **không kiểm tra `seconds`**,
+  nên việc xóa bản ghi lạ sẽ là can thiệp âm thầm vào bằng chứng gốc — đúng thứ bộ audit
+  này sinh ra để chống. Muốn số sạch thì **chạy lại ra đường dẫn mới** (`baseline.py:39`
+  chặn ghi đè, nên chạy lại tự nhiên thành một lần đo độc lập; ví dụ đã làm:
+  `v2-pool4-s1234.jsonl` đo lại đúng 3.56 s/đề).
+- `valid_output_rate`, `pass@1`, `pass@k`, `error_counts` **không bị ảnh hưởng** vì verifier
+  chấm lại từng bản ghi.
+- Khi chạy bộ dài, tắt sleep: `powercfg /change standby-timeout-ac 0` (hoàn tác bằng cùng
+  lệnh với giá trị `15`).
+
 ## Kết quả đã đo trên `data-v2/validation.jsonl` (40 đề)
 
 | Cấu hình | valid | parse fail | pass@1 | pass@4 | CI 95% |
@@ -123,11 +150,32 @@ Bốn điều rút ra:
 4. **Số nhỏ trên 12 đề là nhiễu.** Con số 0.083 của pilot `data/` không tái lập trên 40 đề
    (0.000 ở cả hai seed). Đừng kết luận phương pháp từ validation 12 đề.
 
+## Kết quả trên test-ID và 4 trục OOD (SFT ckpt-80, greedy 1 mẫu)
+
+| Tập | n | `valid` | `pass@1` | Fisher p so với test-ID (về `valid`) |
+|---|---:|---:|---:|---:|
+| `test-id` | 40 | 1.000 | 0.050 | — |
+| `ood-range` (số 11–20) | 60 | 1.000 | 0.133 | 1.00 (không khác) |
+| **`ood-arity` (5 số)** | 60 | **0.000** | **0.000** | **7.3e-29 (gãy hoàn toàn)** |
+| `ood-fraction` | 60 | 0.967 | 0.033 | 0.52 (không khác) |
+| `ood-depth` | 60 | 0.967 | 0.050 | 0.52 (không khác) |
+
+Khoảng cách ngoài phân phối **chỉ tồn tại trên một trục: số lượng số**. Trên 60/60 đề 5 số,
+model luôn viết đúng 4 hằng số theo khuôn `((a op b) op (c op d))` và bỏ rơi số còn lại
+(`error_code = NUMBERS` 60/60) — tức nó học *khuôn hình thức* của reference, không học
+*luật* của trò chơi. Chi tiết và hệ quả ở `notes/vinh-eval-ood-v2-001.md`.
+
+Lưu ý: `ood-arity` đổi đồng thời 2 thuộc tính (5 số **và** depth 3 theo `generator.py:89`),
+nên "arity" chưa tách khỏi "độ sâu" — muốn tách phải thêm profile mới và tăng
+`generator_version`.
+
 ## Hạn chế thật của bộ số liệu này
 
 - Model 0.5B, 1 GPU 4 GB, số bước train là smoke/1-epoch, **không** phải run hội tụ.
-- SFT ckpt-80 đồng thời đổi hai biến (96 -> 320 đề **và** 24 -> 80 bước). Chưa có control
-  tách riêng ảnh hưởng của lượng dữ liệu.
+- SFT ckpt-80 từng đổi hai biến một lúc (96 → 320 đề **và** 24 → 80 bước); control
+  `vinh-sft-control96-001` đã tách: định dạng đến từ **số bước**, độ chính xác theo **lượng
+  dữ liệu** nhưng ở mức chưa có ý nghĩa thống kê (Fisher p ≈ 0.36).
+- Mỗi cấu hình train **một seed duy nhất**; chưa có phương sai giữa seed cho SFT/GRPO.
 - Tái lập GPU không đảm bảo bit-identical dù cùng seed; chỉ tiêu số có thể lệch nhẹ.
 - Validation 40 đề cho CI rộng (±0.11 ở mức 0.175). Kết luận mạnh hơn cần đề nhiều hơn.
 - Pilot `data/` (12 đề validation) giữ nguyên trong repo làm bằng chứng quá trình, không

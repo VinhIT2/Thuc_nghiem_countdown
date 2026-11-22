@@ -1,0 +1,21 @@
+{
+  "dataset": "data-v2/ood-depth.jsonl",
+  "out": "logs/v2-E-ood-depth-sft80.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": "logs/sft-v2-001/checkpoint-80",
+  "style": "direct",
+  "n": 1,
+  "max_new_tokens": 128,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "seed": 42,
+  "config_id": "E-ood-depth-sft80",
+  "sample": false,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "verifier_version": "verifier-v1",
+  "dataset_sha256": "8a72d5cdda7e8f50545352802e7ce21d7d9f015eab00b29566f500020f2f66ed",
+  "timing": "generate wall-time with GPU synchronization; excludes loading/tokenization",
+  "output_token_count": "includes generated EOS; input tokens logged separately"
+}

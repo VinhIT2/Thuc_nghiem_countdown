@@ -1,0 +1,21 @@
+{
+  "dataset": "data-v2/ood-arity.jsonl",
+  "out": "logs/v2-E-ood-arity-grpo240.jsonl",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "adapter": "logs/vinh-grpo-v2-binary-240-001/checkpoint-240",
+  "style": "direct",
+  "n": 1,
+  "max_new_tokens": 128,
+  "temperature": 0.8,
+  "top_p": 0.95,
+  "seed": 42,
+  "config_id": "E-ood-arity-grpo240",
+  "sample": false,
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "verifier_version": "verifier-v1",
+  "dataset_sha256": "7b4f1d5441111f76dc6595a024e894dfdb45c06a26a9a6a0d34770a2af6a8be2",
+  "timing": "generate wall-time with GPU synchronization; excludes loading/tokenization",
+  "output_token_count": "includes generated EOS; input tokens logged separately"
+}
