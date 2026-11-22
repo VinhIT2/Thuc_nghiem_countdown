@@ -1,0 +1,6 @@
+{
+  "wall_seconds": 176.49936339998385,
+  "peak_allocated_bytes": 1228468736,
+  "peak_reserved_bytes": 1507852288,
+  "warning": "Final adapter is last step, not necessarily validation-best"
+}

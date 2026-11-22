@@ -1,0 +1,29 @@
+# Control tach bien: 80 buoc (GIONG het sft-v2-001) nhung chi 96 de train.
+# So sanh voi logs/sft-v2-001 de biet 0.175 den tu LUONG DU LIEU hay so BUOC.
+experiment_id: vinh-sft-control96-001
+model: Qwen/Qwen2.5-0.5B-Instruct
+revision: 7ae557604adf67be50417f59c2c2f167def9a775
+train: controls/slice96/train96.jsonl
+validation: data-v2/validation.jsonl
+output_dir: logs/vinh-sft-control96-001
+prompt_style: direct
+seed: 42
+precision: bf16
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules: [q_proj, v_proj]
+learning_rate: 0.0002
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+max_steps: 80
+num_train_epochs: 1
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 4
+max_seq_length: 256
+eval_steps: 40
+save_steps: 40
+logging_steps: 8
+gradient_checkpointing: true

@@ -1,0 +1,9 @@
+{
+  "source": "data-v2/train.jsonl",
+  "source_sha256": "5051d7ab15f2461e287645ef505be190f962063379ef77421ab19299ca82ce69",
+  "rule": "96 dong dau tien (file da duoc xao tron bang seed+1 trong generator.build)",
+  "rows": 96,
+  "sha256": "ee61be6c74a056724b17b210abb96d415ad6ab92cb839d74431c2068eed039f7",
+  "validation": "data-v2/validation.jsonl (khong giao voi train vi la cat tu train)",
+  "purpose": "Control tach 'so buoc train' khoi 'luong du lieu': 80 buoc tren 96 de vs 80 buoc tren 320 de"
+}

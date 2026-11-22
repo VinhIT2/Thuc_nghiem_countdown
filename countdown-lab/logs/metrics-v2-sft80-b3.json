@@ -1,0 +1,22 @@
+{
+  "problem_count": 40,
+  "samples_per_problem": 1,
+  "k": 1,
+  "valid_output_rate": 1.0,
+  "parse_failure_rate": 0.0,
+  "error_counts": {
+    "WRONG_TARGET": 36,
+    "OK": 4
+  },
+  "mean_tokens_per_record": 65.325,
+  "mean_seconds_per_record": 2.893046849995153,
+  "mean_tokens_per_problem": 65.325,
+  "mean_seconds_per_problem": 2.893046849995153,
+  "bootstrap_unit": "problem ID; uncertainty across problems, not training seeds",
+  "selected_success_rate": 0.1,
+  "selected_success_ci95": [
+    0.025,
+    0.2
+  ],
+  "selection_budget": 4
+}
